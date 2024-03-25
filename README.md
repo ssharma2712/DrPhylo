@@ -11,7 +11,7 @@
 7. [C++ Components](#individual-components)
 
 ## Description ##
-ESL (Evolutionary Sparse Learning) is a set of programs written in c++ provided with a python pipeline, designed to investigate various evolutionary/phylogenetic hypotheses, by applying the sparse group lasso penalty to regression optimization problems relating the provided hypothesis to a set of provided sequence alignments. ESL efficiently highlights genes, and positions within those genes, that show the greatest level of importance/discriminatory power in terms of a specific evolutionary hypothesis.
+DrPhylo is a program designed to investigate major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo the sparse group lasso penalty to regression optimization problems relating the provided hypothesis to a set of provided sequence alignments. ESL efficiently highlights genes, and positions within those genes, that show the greatest level of importance/discriminatory power in terms of a specific evolutionary hypothesis.
 
 
 ## SGLASSO ##
