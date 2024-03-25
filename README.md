@@ -1,4 +1,4 @@
-# Evolutionary Sparse Learning (ESL) #
+# DrPhylo analysis using Evolutionary Sparse Learning (ESL) #
 
 ## Table of Contents ##
 
