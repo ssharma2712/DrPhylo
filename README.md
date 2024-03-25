@@ -11,19 +11,11 @@
 7. [C++ Components](#individual-components)
 
 ## Description ##
-DrPhylo is a program designed to investigate major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo the sparse group lasso penalty to regression optimization problems relating the provided hypothesis to a set of provided sequence alignments. ESL efficiently highlights genes, and positions within those genes, that show the greatest level of importance/discriminatory power in terms of a specific evolutionary hypothesis.
-
-
-## SGLASSO ##
-
-Applying the sparse group Lasso penalty yields a solution that achieves the within- and between- group sparsity simultaneously. That is, many feature groups are exactly zero (thus not selected) and within the non-zero (thus selected) feature groups, some features are also exactly zero. The simultaneous within- and between- group sparsity makes sparse group Lasso ideal for applications where we are interested in identifying important groups as well as important features within the selected groups.
-
-The algorithm can optimize feature weights under either a least squares or logistic regression model. Additionally, the overlapping variants of those programs can accept input where feature groups overlap.
-
+DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and the sequence alignment of genes or genomic loci. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies.
 
 ## Requirements ##
 
-To run ESL, you will need python 3.8 or later installed, as well as the following python packages
+To run DrPhylo, you will need Python 3.8 or later installed, as well as the following Python packages
 
 - numpy
 - biopython
