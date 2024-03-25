@@ -3,12 +3,11 @@
 ## Table of Contents ##
 
 1. [Description](#description)
-2. [SGLASSO](#sglasso)
-3. [Requirements](#requirements)
-4. [Setup](#setup)
-5. [Usage](#usage)
-6. [Output](#output)
-7. [C++ Components](#individual-components)
+2. [Requirements](#requirements)
+3. [Setup](#setup)
+4. [Usage](#usage)
+5. [Output](#output)
+6. [C++ Components](#individual-components)
 
 ## Description ##
 DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and the sequence alignment of genes or genomic loci. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies.
@@ -28,7 +27,7 @@ You can install these libraries using pip:
 
 ## Setup ##
 
-To setup ESL, perform the following on the command line:
+To perform DrPhylo analysis, get the ESL package using the following on the command line:
 
 	git clone -b grid_search https://github.com/kumarlabgit/ESL ESL
 	cd ESL
