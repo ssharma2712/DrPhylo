@@ -34,6 +34,14 @@ To perform DrPhylo analysis, get the ESL package using the following on the comm
 	bash setup.sh
 
 
+## Input ##
+DrPhylo takes a phylogenetic tree in newick format and sequence alignmnets of genes or genomic loci in fasta format. The clade of interest in the newick tree needs to be marked by a node ID as presented in the example. An user can also provide a text file for the hypothesis 
+
+`` List of sequence alignmnets
+   A phylogenetic tree in newick format  and/or
+   A text file containaing the phylogenetic hypothesis 
+
+   ``
 ## Usage: ##
 
 Once setup has been performed, the main pipeline can be applied to a set of alignment files and a hypothesis to determine the features/feature groups which have the most explanatory power in term of the provided hypothesis.
@@ -329,3 +337,8 @@ Overlapping sparse group LASSO using least squares regression.
 	mv angiosperm_input ..
 	cd ..
  	bin/overlapping_sg_lasso_leastr -f ol_angiosperm_input/feature_ol_angiosperm_input.txt -z 0.1 -y 0.5 -n ol_angiosperm_input/group_indices_ol_angiosperm_input.txt -g ol_angiosperm_input/field_ol_angiosperm_input.txt -r ol_angiosperm_input/response_ol_angiosperm_input.txt -w angiosperm_out_feature_weights
+
+## Citation ##
+If you use this software in your research, please cite our paper:
+
+Sharma, S. & Kumar, S. (2024). Discovering fragile clades and causal sequences in phylogenomics by evolutionary sparse learning. (In review)
