@@ -10,7 +10,11 @@
 
 
 ## Description ##
-DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and identify highly influential genes for species in the clade. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies.
+DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and identify highly influential genes for species in the clade. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies. A schematic preview of DrPhylo analysis:
+			<div style="display: flex; justify-content: center;">
+			    <img src="https://github.com/ssharma2712/DrPhylo/assets/11808951/332cbd52-a1b3-4593-a0dd-62f6723376a0" width="600">
+			</div>
+
 
 ## Requirements ##
 
@@ -36,12 +40,20 @@ To perform DrPhylo analysis, get the ESL package using the following on the comm
 
 ## Input ##
 DrPhylo takes a phylogenetic tree in newick format and sequence alignmnets of genes or genomic loci in fasta format. The clade of interest in the newick tree needs to be marked by a node ID as presented in the example. An user can also provide a text file for the hypothesis 
+ 
+<br />
 
-`` List of sequence alignmnets
-   A phylogenetic tree in newick format  and/or
-   A text file containaing the phylogenetic hypothesis 
 
-   ``
+```
+Sequence alignmnets         : A text files contains the path of all sequence alignmnets into fasta format.  
+
+Phylogenetic tree           : A inferred phylogenetic tree with a node ID for the clade of interest.  
+
+Phylogenetic hypothesis     : A text file containing the species name with corresponding response value. A species is assigned +1 if the species belongs into the clade of interest or -1 otherwise.  
+
+```
+<br />
+
 ## Usage: ##
 
 Once setup has been performed, the main pipeline can be applied to a set of alignment files and a hypothesis to determine the features/feature groups which have the most explanatory power in term of the provided hypothesis.
