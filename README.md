@@ -10,7 +10,7 @@
 6. [C++ Components](#individual-components)
 
 ## Description ##
-DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and the sequence alignment of genes or genomic loci. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies.
+DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and identify highly influential genes for species in the clade. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies.
 
 ## Requirements ##
 
