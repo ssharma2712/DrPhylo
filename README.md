@@ -7,11 +7,11 @@ DrPhylo investigates major species relationships in phylogenies inferred from ph
 ```
 Gene species concordance (GSC)              : A numeric value that identifies gene-species combinations (sequence) harboring concordant ( GSC > 0) or conflicting (GSC < 0) phylogenetic signals. 
 
-Sequence Classification Probability (SCP)   : Classification probability for a species for being a memeber of the clade of interest.  
+Sequence Classification Probability (SCP)   : Classification probability for a species for being a member of the clade of interest.  
 
-Clade Proabaility (CP)                      : Probability (0-1) for the clade of interest. A low value for CP indicates the plausibility for being fragile.  
+Clade Proabaility (CP)                      : Probability (0-1) for the clade of interest. A low value for CP indicates the plausibility of being fragile.  
 
-Model grid                                  : A grid representation of the clade model. Rows of this grid represents species with SCP and columns for genes. 
+Model grid                                  : This is a grid representation of the clade model. Rows of this grid represents species with SCP and columns for genes. 
                                               Green       (GSC > 0 )
                                               Red         (GSC < 0 )
                                               White       (GSC = 0 )
@@ -47,22 +47,22 @@ To perform DrPhylo analysis, get the ESL package using the following on the comm
 
 
 ## Input ##
-DrPhylo takes a phylogenetic tree in newick format and sequence alignmnets of genes or genomic loci in fasta format. The clade of interest in the newick tree needs to be marked by a node ID as presented in the example. An user can also provide a text file for the hypothesis 
+DrPhylo takes a phylogenetic tree in newick format and sequence alignments of genes or genomic loci in fasta format. The clade of interest in the newick tree needs to be marked by a node ID as presented in the example. An user can also provide a text file for the hypothesis 
  
 <br />
 
 ```
-Sequence alignmnets         : A list of sequence alignmnets into fasta format.  
+Sequence alignmnets         : A list of sequence alignmenets into fasta format.  
 
 Phylogenetic tree           : A phylogenetic tree with clade ID for the clade of interest.  
 
-Phylogenetic hypothesis     : A text file containing the species name with corresponding response value (+1/-1). It is required for user defined hypothesis.  
+Phylogenetic hypothesis     : A text file containing the species name with corresponding response value (+1/-1). It is required for user-defined hypotheses.  
 ```
 <br />
 
 ## Implementation ##
 
-Once the setup is done and all required Python package is installed, one can perform DrPhylo analysis using required inputs and other necessary optional arguments.
+Once the setup is complete and all required Python packages are installed, one can perform DrPhylo analysis using the required inputs and other necessary optional arguments.
 
 <br />
 
@@ -77,12 +77,12 @@ python3 ESL_pipeline.py tree_file.nwk alignment_list.txt  --optional arguments
 
 ```
 
-tree_file.nwk         : A phylogenetic tree in newick format with a node ID to construct hypothesis for the clade of interest.
-                        The hypothesis can also be specified with a separate hypothesis file provided using the --response parameter.
-                        It is highly recommended that the number of species in the clade is equal to ot more than the number of species outside the clade.
-                        It is also recommened to use the option smart sampling option (--smart_sampling) when the number of species inside the clade is greater than the number of species outside the clade.  
+tree_file.nwk         : A phylogenetic tree in newick format with a node ID to construct a hypothesis for the clade of interest.
+                        The hypothesis can also be specified with a separate file provided using the --response parameter.
+                        It is highly recommended that the number of species in the clade be equal to or greater than the number of species outside the clade.
+                        It is also recommened to use the option smart sampling option (--smart_sampling) when the number of species inside the clade is greater than the number outside the clade.  
 
-alignment_list.txt    : A text file contains list of paths for all sequence alignmnets. For example,
+alignment_list.txt    : A text file contains a list of paths for all sequence alignments. For example,
                         angiosperm_alns/7276_C12.fasta
                         angiosperm_alns/5111_C12.fasta
                         angiosperm_alns/5507_C12.fasta
@@ -96,9 +96,9 @@ alignment_list.txt    : A text file contains list of paths for all sequence alig
 
 ```
 
---response          : Requires a text file containiang user defined hypothesis. It has two columns which are tab separeted where the first column contains species names and the second column conatins reposne value for the species (+1/-1). A memeber species in the clade receives +1 and -1 otherwise.
-                        This hypothesis is unconstrained by the tree structure. It is highly recommened that the number of species within the clade of interest (+1) is equal to the number of species outside the clade. 
-                        The hypothesis can also be specified with a separate hypothesis file provided using the --response parameter.  
+--response          : Requires a text file containing a user-defined hypothesis. It has two columns, which are tab-separated. The first column contains species names, and the second column contains the response value for the species 
+                      (+1/-1). A member species in the clade receives +1 and -1 otherwise. This hypothesis is unconstrained by the tree structure. It is highly recommended that the number of species within the clade of interest (+1) 
+                      is equal to the number of species outside the clade. The hypothesis can also be specified using a separte text file provided using the --response parameter.  
 
 *--lambda1 (or -z)   : The site sparsity parameter that ranges from 0 to 1, and default is 0.1 when not specified. It is required for building a single clade model.
 
