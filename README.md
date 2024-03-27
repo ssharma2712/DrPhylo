@@ -57,8 +57,7 @@ Sequence alignmnets         : A list of sequence alignmnets into fasta format.
 
 Phylogenetic tree           : A phylogenetic tree with clade ID for the clade of interest.  
 
-Phylogenetic hypothesis     : A text file containing the species name with corresponding response value. A species is assigned +1 if the species belongs into the clade of interest or -1 otherwise.  
-
+Phylogenetic hypothesis     : A text file containing the species name with corresponding response value (+1/-1). It is required for user defined hypothesis.  
 ```
 <br />
 
