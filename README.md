@@ -51,7 +51,6 @@ DrPhylo takes a phylogenetic tree in newick format and sequence alignmnets of ge
  
 <br />
 
-
 ```
 Sequence alignmnets         : A list of sequence alignmnets into fasta format.  
 
@@ -61,7 +60,7 @@ Phylogenetic hypothesis     : A text file containing the species name with corre
 ```
 <br />
 
-## Usage: ##
+## Implementation ##
 
 Once the setup is done and all required Python package is installed, one can perform DrPhylo analysis using required inputs and other necessary optional arguments.
 
@@ -79,12 +78,39 @@ python3 ESL_pipeline.py tree_file.nwk alignment_list.txt  --optional arguments
 ```
 
 tree_file.nwk         : A phylogenetic tree in newick format with a node ID to construct hypothesis for the clade of interest.
-                        The hypothesis can also be specified with a separate hypothesis file provided using the --response parameter.  
+                        The hypothesis can also be specified with a separate hypothesis file provided using the --response parameter.
+                        It is highly recommended that the number of species in the clade is equal to ot more than the number of species outside the clade.
+                        It is also recommened to use the option smart sampling option (--smart_sampling) when the number of species inside the clade is greater than the number of species outside the clade.  
 
-alignment_list.txt    : A text file contains list of paths for all sequence alignmnets. For example
+alignment_list.txt    : A text file contains list of paths for all sequence alignmnets. For example,
                         angiosperm_alns/7276_C12.fasta
                         angiosperm_alns/5111_C12.fasta
                         angiosperm_alns/5507_C12.fasta
+
+```
+<br />	
+
+#### Optional argumnets:
+
+<br />
+
+```
+
+--response          : Requires a text file containiang user defined hypothesis. It has two columns which are tab separeted where the first column contains species names and the second column conatins reposne value for the species (+1/-1). A memeber species in the clade receives +1 and -1 otherwise.
+                        This hypothesis is unconstrained by the tree structure. It is highly recommened that the number of species within the clade of interest (+1) is equal to the number of species outside the clade. 
+                        The hypothesis can also be specified with a separate hypothesis file provided using the --response parameter.  
+
+*--lambda1 (or -z)   : The site sparsity parameter that ranges from 0 to 1, and default is 0.1 when not specified. It is required for building a single clade model.
+
+*--lambda2 (or -y)   : The gene sparsity parameter that ranges from 0 to 1, and default is 0.1 when not specified. It is required for building a single clade model.
+
+--grid_z            : Run in grid-search mode with feature sparsity parameter in the specified range using the specified step-size. Must be used with --grid_y option.
+
+--grid_y            : Run in grid-search mode with group sparsity parameter in the specified range using the specified step-size. Must be used with --grid_z option.
+
+--grid_gene_threshold <int>`: Skip generating models that are guaranteed to produce less than or equal to this number of non-zero feature groups, i.e., skip generating a new model for any lambda pair where an existing model with L1<=new_L1 and L2<=new_L2 has the threshold number of genes or lower.
+
+--smart_sampling    : Instead of assigning a -1 response value to all species not assigned a +1 value, smart sampling will try to select a phylogenetically informed negative sample of equal size to the positive sample.
 
 ```
 <br />	
