@@ -114,10 +114,11 @@ alignment_list.txt    : A text file contains a list of paths for all sequence al
 
 --smart_sampling       : This option is recommended when the user-defined hypothesis is not provided using "--resposne" option. Smart sampling ensures a class balance between the number of species inside and outside the clade of 
                          interest by phylogenetic-aware sampling of species outside of the clade.
+--output               : The name of the output directory where all results from DrPhylo analysis will be stored. This directory is created automatically by the program. 
 ```
 <br />	
 
-#### Usage examples:
+## Implementation using example dataset ##
 
 Run basic ESL on a tree with 2 internally labeled nodes, producing a result set for each of two hypotheses generated from the input tree:
 
@@ -140,7 +141,7 @@ Run basic ESL on a tree with 2 internally labeled nodes, producing a result set 
 	python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns_overlapping.txt --output sample_tree_output_ol_logistic --method ol_logistic
 
 
-## Output ##
+## Implementation using example dataset ##
 
 #### Basic Results Files
 
