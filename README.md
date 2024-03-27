@@ -1,4 +1,4 @@
-# DrPhylo analysis using Evolutionary Sparse Learning (ESL) #
+# DrPhylo analysis for detecting fragile clades in an inferred phylogeny from phylogenomic datasets #
 
 DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and identify highly influential genes for species in the clade. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies. A schematic outline of DrPhylo analysis:
 			<div style="display: flex; justify-content: center;">
