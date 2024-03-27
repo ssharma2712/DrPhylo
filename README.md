@@ -11,7 +11,7 @@ Sequence Classification Probability (SCP)   : Classification probability for a s
 
 Clade Proabaility (CP)                      : Probability (0-1) for the clade of interest. A low value for CP indicates the plausibility of being fragile.  
 
-Model grid                                  : This is a grid representation of the clade model. Rows of this grid represents species with SCP and columns for genes. 
+Model grid                                  : This is a grid representation of the clade model. The rows of this grid represent species with SCP and columns for genes. 
                                               Green       (GSC > 0 )
                                               Red         (GSC < 0 )
                                               White       (GSC = 0 )
@@ -52,7 +52,7 @@ DrPhylo takes a phylogenetic tree in newick format and sequence alignments of ge
 <br />
 
 ```
-Sequence alignmnets         : A list of sequence alignmenets into fasta format.  
+Sequence alignmnets         : A list of sequence alignments into fasta format.  
 
 Phylogenetic tree           : A phylogenetic tree with clade ID for the clade of interest.  
 
@@ -78,9 +78,9 @@ python3 ESL_pipeline.py tree_file.nwk alignment_list.txt  --optional arguments
 ```
 
 tree_file.nwk         : A phylogenetic tree in newick format with a node ID to construct a hypothesis for the clade of interest.
-                        The hypothesis can also be specified with a separate file provided using the --response parameter.
-                        It is highly recommended that the number of species in the clade be equal to or greater than the number of species outside the clade.
-                        It is also recommened to use the option smart sampling option (--smart_sampling) when the number of species inside the clade is greater than the number outside the clade.  
+                        The hypothesis can also be specified with a separate file using the --response parameter.
+                        It is highly recommended that the number of species in the clade be equal to or greater than those outside of the clade.
+                        It is also recommended to use the smart sampling option (—-smart_sampling) when the number of species inside the clade is greater than the number outside the clade.  
 
 alignment_list.txt    : A text file contains a list of paths for all sequence alignments. For example,
                         angiosperm_alns/7276_C12.fasta
@@ -98,17 +98,19 @@ alignment_list.txt    : A text file contains a list of paths for all sequence al
 
 --response          : Requires a text file containing a user-defined hypothesis. It has two columns, which are tab-separated. The first column contains species names, and the second column contains the response value for the species 
                       (+1/-1). A member species in the clade receives +1 and -1 otherwise. This hypothesis is unconstrained by the tree structure. It is highly recommended that the number of species within the clade of interest (+1) 
-                      is equal to the number of species outside the clade. The hypothesis can also be specified using a separte text file provided using the --response parameter.  
+                      is equal to the number of species outside the clade. The hypothesis can also be specified using a separate text file provided using the --response parameter.  
 
-*--lambda1 (or -z)   : The site sparsity parameter that ranges from 0 to 1, and default is 0.1 when not specified. It is required for building a single clade model.
+--lambda1 (or -z)   : The site sparsity parameter that ranges from 0 to 1. When not specified, the default is 0.1. It is required for building a single clade model.
 
-*--lambda2 (or -y)   : The gene sparsity parameter that ranges from 0 to 1, and default is 0.1 when not specified. It is required for building a single clade model.
+--lambda2 (or -y)   : The gene sparsity parameter ranges from 0 to 1, and the default is 0.1 when not specified. It is required for building a single clade model.
 
---grid_z            : Run in grid-search mode with feature sparsity parameter in the specified range using the specified step-size. Must be used with --grid_y option.
+--grid_z              : This option builds multiple clade models for a sequence of site sparsity parameters defined by the user. A user can specify the minimum (0-1), maximum (0-1), and step size for the sequence of site sparsity 
+                       parameters. This option must be used with --grid_y and does not require to specify --lambda1.  
 
---grid_y            : Run in grid-search mode with group sparsity parameter in the specified range using the specified step-size. Must be used with --grid_z option.
+--grid_y              : This option builds multiple clade models for a sequence of gene sparsity parameters defined by the user. A user can specify the minimum (0-1), maximum (0-1), and step size for the sequence of gene sparsity 
+                        parameters. This option must be used with --grid_z and does not require to specify --lambda2. 
 
---grid_gene_threshold <int>`: Skip generating models that are guaranteed to produce less than or equal to this number of non-zero feature groups, i.e., skip generating a new model for any lambda pair where an existing model with L1<=new_L1 and L2<=new_L2 has the threshold number of genes or lower.
+--grid_gene_threshold : It is defined for early stopping for the grid search over the sparsity parameter space. It takes a value greater than zero (0) and builds models with less than or equal to this number of genes.
 
 --smart_sampling    : Instead of assigning a -1 response value to all species not assigned a +1 value, smart sampling will try to select a phylogenetically informed negative sample of equal size to the positive sample.
 
