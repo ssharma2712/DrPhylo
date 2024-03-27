@@ -1,5 +1,11 @@
 # DrPhylo analysis using Evolutionary Sparse Learning (ESL) #
 
+DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and identify highly influential genes for species in the clade. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies. A schematic outline of DrPhylo analysis:
+			<div style="display: flex; justify-content: center;">
+			    <img src="https://github.com/ssharma2712/DrPhylo/assets/11808951/332cbd52-a1b3-4593-a0dd-62f6723376a0" width="600">
+			</div>
+
+
 ## Table of Contents ##
 
 1. [Description](#description)
@@ -11,12 +17,6 @@
 
 
 ## Description ##
-DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and identify highly influential genes for species in the clade. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies. A schematic outline of DrPhylo analysis:
-			<div style="display: flex; justify-content: center;">
-			    <img src="https://github.com/ssharma2712/DrPhylo/assets/11808951/332cbd52-a1b3-4593-a0dd-62f6723376a0" width="600">
-			</div>
-
-
 ## Requirements ##
 
 To run DrPhylo, you will need Python 3.8 or later installed, as well as the following Python libraries:
@@ -47,9 +47,9 @@ DrPhylo takes a phylogenetic tree in newick format and sequence alignmnets of ge
 
 
 ```
-Sequence alignmnets         : A text files contains the path of all sequence alignmnets into fasta format.  
+Sequence alignmnets         : A list of sequence alignmnets into fasta format.  
 
-Phylogenetic tree           : A inferred phylogenetic tree with a node ID for the clade of interest.  
+Phylogenetic tree           : A phylogenetic tree with clade ID for the clade of interest.  
 
 Phylogenetic hypothesis     : A text file containing the species name with corresponding response value. A species is assigned +1 if the species belongs into the clade of interest or -1 otherwise.  
 
@@ -63,7 +63,7 @@ Once the setup is done and all required Python package is installed, one can per
 <br />
 
 ```
-python3 ESL_pipeline.py tree_file.nwk alignment_list.txt  --optional argument
+python3 ESL_pipeline.py tree_file.nwk alignment_list.txt  --optional arguments
 ```
 <br />
 
