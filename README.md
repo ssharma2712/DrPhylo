@@ -120,15 +120,15 @@ alignment_list.txt    : A text file contains a list of paths for all sequence al
 
 ## Implementation using example dataset ##
 
-DrPhylo analysis for building clade models for two labeled clades, producing a result set for each of two hypotheses generated from the input tree:
+DrPhylo analysis for building clade models for two labeled clades, producing a result set for each of two hypotheses generated from the input tree:<br />
 ``
 python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output
 ``
-DrPhylo analysis using a user-defined hypothesis, producing a single clade model for the given hypothesis:
+DrPhylo analysis using a user-defined hypothesis, producing a single clade model for the given hypothesis:<br />
 ``
 python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output --response sample_files/test_pred.txt
 ``
-DrPhylo analysis for building an ensemble clade model for a user-defined hypothesis using the grid search option. The site and gene sparsity score range from 0.05 to 0.1 and a step size of 0.05:
+DrPhylo analysis for building an ensemble clade model for a user-defined hypothesis using the grid search option. The site and gene sparsity score range from 0.05 to 0.1 and a step size of 0.05:<br />
 ``
 python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --grid_z 0.05,0.1,0.05 --grid_y 0.05,0.1,0.05 --output sample_grid2x2_output --response sample_files/test_pred.txt
 ``
