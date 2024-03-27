@@ -1,23 +1,31 @@
 # DrPhylo analysis for detecting fragile clades in an inferred phylogeny from phylogenomic datasets #
 
-DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and identify highly influential genes for species in the clade. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies. A schematic outline of DrPhylo analysis:
+DrPhylo investigates major species relationships in phylogenies inferred from phylogenomic datasets. This approach applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest for a given set of sequence alignments from genes or genomic loci. DrPhylo outputs:
+<br />
+
+
+```
+Gene species concordance (GSC)              : A numeric value that identifies gene-species combinations (sequence) harboring concordant ( GSC > 0) or conflicting (GSC < 0) phylogenetic signals. 
+
+Sequence Classification Probability (SCP)   : Classification probability for a species for being a memeber of the clade of interest.  
+
+Clade Proabaility (CP)                      : Probability (0-1) for the clade of interest. A low value for CP indicates the plausibility for being fragile.  
+
+Model grid                                  : A grid representation of the clade model. Rows of this grid represents species with SCP and columns for genes. 
+                                              Green       (GSC > 0 )
+                                              Red         (GSC < 0 )
+                                              White       (GSC = 0 )
+                                              Cross mark  (Missing data)    
+
+```
+<br />
+A schematic outline of DrPhylo analysis:
 			<div style="display: flex; justify-content: center;">
 			    <img src="https://github.com/ssharma2712/DrPhylo/assets/11808951/332cbd52-a1b3-4593-a0dd-62f6723376a0" width="600">
 			</div>
 
 
-## Table of Contents ##
-
-1. [Description](#description)
-2. [Input](#input)
-3. [Requirements](#requirements)
-4. [Setup](#setup)
-5. [Usage](#usage)
-6. [Output](#output)
-
-
-## Description ##
-## Requirements ##
+## Installation ##
 
 To run DrPhylo, you will need Python 3.8 or later installed, as well as the following Python libraries:
 ```R
@@ -30,8 +38,6 @@ pandas
 You can install these libraries using pip:
 
 `pip install biopython numpy pandas matplotlib`
-
-## Setup ##
 
 To perform DrPhylo analysis, get the ESL package using the following on the command line:
 
