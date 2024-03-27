@@ -96,71 +96,26 @@ alignment_list.txt    : A text file contains a list of paths for all sequence al
 
 ```
 
---response          : Requires a text file containing a user-defined hypothesis. It has two columns, which are tab-separated. The first column contains species names, and the second column contains the response value for the species 
-                      (+1/-1). A member species in the clade receives +1 and -1 otherwise. This hypothesis is unconstrained by the tree structure. It is highly recommended that the number of species within the clade of interest (+1) 
-                      is equal to the number of species outside the clade. The hypothesis can also be specified using a separate text file provided using the --response parameter.  
+--response             : Requires a text file containing a user-defined hypothesis. It has two columns, which are tab-separated. The first column contains species names, and the second column contains the response value for the 
+                         species (+1/-1). A member species in the clade receives +1 and -1 otherwise. This hypothesis is unconstrained by the tree structure. It is highly recommended that the number of species within the clade of 
+                         interest (+1) is equal to the number of species outside the clade. The hypothesis can also be specified using a separate text file provided using the --response parameter.  
 
---lambda1 (or -z)   : The site sparsity parameter that ranges from 0 to 1. When not specified, the default is 0.1. It is required for building a single clade model.
+--lambda1 (or -z)      : The site sparsity parameter that ranges from 0 to 1. When not specified, the default is 0.1. It is required for building a single-clade model.
 
---lambda2 (or -y)   : The gene sparsity parameter ranges from 0 to 1, and the default is 0.1 when not specified. It is required for building a single clade model.
+--lambda2 (or -y)      : The gene sparsity parameter ranges from 0 to 1, and the default is 0.1 when not specified. It is required for building a single-clade model.
 
---grid_z              : This option builds multiple clade models for a sequence of site sparsity parameters defined by the user. A user can specify the minimum (0-1), maximum (0-1), and step size for the sequence of site sparsity 
-                       parameters. This option must be used with --grid_y and does not require to specify --lambda1.  
+--grid_z               : This option builds multiple clade models for a sequence of site sparsity parameters defined by the user. A user can specify the minimum (0-1), maximum (0-1), and step size for the sequence of site sparsity 
+                         parameters. This option must be used with --grid_y and does not require to specify --lambda1.  
 
---grid_y              : This option builds multiple clade models for a sequence of gene sparsity parameters defined by the user. A user can specify the minimum (0-1), maximum (0-1), and step size for the sequence of gene sparsity 
-                        parameters. This option must be used with --grid_z and does not require to specify --lambda2. 
+--grid_y               : This option builds multiple clade models for a sequence of gene sparsity parameters defined by the user. A user can specify the minimum (0-1), maximum (0-1), and step size for the sequence of gene sparsity 
+                         parameters. This option must be used with --grid_z and does not require to specify --lambda2. 
 
---grid_gene_threshold : It is defined for early stopping for the grid search over the sparsity parameter space. It takes a value greater than zero (0) and builds models with less than or equal to this number of genes.
+--grid_gene_threshold  : It is defined for early stopping for the grid search over the sparsity parameter space. It takes a value greater than zero (0) and builds models with less than or equal to this number of genes.
 
---smart_sampling    : Instead of assigning a -1 response value to all species not assigned a +1 value, smart sampling will try to select a phylogenetically informed negative sample of equal size to the positive sample.
-
+--smart_sampling       : This option is recommended when the user-defined hypothesis is not provided using "--resposne" option. Smart sampling ensures a class balance between the number of species inside and outside the clade of 
+                         interest by phylogenetic-aware sampling of species outside of the clade.
 ```
 <br />	
-
-ESL can also be run in cross-validation or grid-search modes, using the --xval or (--grid_z + --grid_y) parameters, respectively. When in grid-search mode, each regression will be run with various feature- and group- sparsity parameters, and the results for each hypothesis will be aggregated across runs, with options to filter result sets with low accuracy/predictive power.
-
-#### Required arguments:
-
-* `tree_file.nwk`: A newick formatted tree file specifying the phylogenetic groups used to construct the hypothesis. Multiple hypotheses can be contructed from the provided newick tree file, or a single hypothesis may be specified with a separate hypothesis file provided using the --response parameter. To specify a hypothesis using the newick tree, a label should be added to the internal node that will be used as the positive response group. For each labeled internal node, a hypothesis will be generated where all terminal children of that node will be assigned the +1 response value, and all other terminal nodes will be given the -1 response value.
-
-* `alignment_list.txt`: The alignment list file should contain one alignment filename (or comma-separated group of alignment filenames, in the case of overlapping groups) on each line.
-
-
-#### Optional arguments:
-
-* `--response hypothesis_file.txt`: To specify a single hypothesis to test, unconstrained by tree structure, the --response parameter can be pointed to a tab-separated two-column text file which contains a sequence ID in the first column, and either -1, 1, or 0 in the second column. Sequences with a 0 in the hypothesis file will be ignored completely.
-
-* `--nodelist node_list.txt`: If the user does not wish to test a hypothesis for every labeled internal node, a node_list file may be used to specify a limited set of labeled internal nodes to test. The node_list file should have the name of one internally labeled node on each line.
-
-* `--output, -o output_dir`: Directory to place outputs in.
-
-* `--lambda1, -z <float>`: The feature level sparsity parameter, higher values will result in more feature sparsity, i.e. fewer features with a non-zero weight. Must be a positive, non-zero value less than one. Defaults to 0.1.
-
-* `--lambda2, -y <float>`: The group level sparsity parameter, higher values will result in more group sparsity, i.e. more feature groups in which *every* feature in the group has a value of zero. Must be a positive, non-zero value less than one. Defaults to 0.1.
-
-* `--method [leastr, logistic, ol_leastr, ol_logistic]`: The sparse group LASSO method to use (default: logistic).
-
-* `--xval <int>`: Perform cross validation with N partitions for each hypothesis specified.
-
-* `--grid_z [min,max,step_size]`: Run in grid-search mode with feature sparsity parameter in the specified range using the specified step-size. Must be used with --grid_y option.
-
-* `--grid_y [min,max,step_size]`: Run in grid-search mode with group sparsity parameter in the specified range using the specified step-size. Must be used with --grid_z option.
-
-* `--grid_rmse_cutoff <float>`: Filter models with RMSE above the cutoff when selecting models to aggregate.
-
-* `--grid_acc_cutoff <float>`: Filter models with accuracy below the cutoff when selecting models to aggregate (range:0.0 - 1.0).
-
-* `--grid_gene_threshold <int>`: Skip generating models that are guaranteed to produce less than or equal to this number of non-zero feature groups, i.e., skip generating a new model for any lambda pair where an existing model with L1<=new_L1 and L2<=new_L2 has the threshold number of genes or lower.
-
-* `--auto_name_nodes`: If the user tree contains no labelled internal nodes, the --auto_name_nodes option may be specified to automatically generate names for each internal node, causing all each internal nodes to be used to generate a unique hypothesis for testing. Note: this may result in a very large number of hypotheses to be tested if the user tree is large, in which case it is suggested to also use the --cladesize_cutoff_lower and --cladesize_cutoff_upper parameters to limit the number of hypotheses that will be tested.
-
-* `--cladesize_cutoff_lower <int>`: Internal nodes with fewer than cladesize_cutoff_lower terminal descendants will not be tested.
-
-* `--cladesize_cutoff_upper <int>`: Internal nodes with greater than cladesize_cutoff_upper terminal descendants will not be tested.
-
-* `--smart_sampling <int>`: Instead of assigning a -1 response value to all species not assigned a +1 value, smart sampling will try to select a phylogenetically informed negative sample of equal size to the positive sample. Modes:
-
-* `--gene_penalties penalties.txt`: File of custom penalty values (same order as alignment list) to assign to alignments/groups/genes. Used to balance importance of feature groups of varying size.
 
 #### Usage examples:
 
