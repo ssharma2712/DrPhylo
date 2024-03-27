@@ -3,14 +3,15 @@
 ## Table of Contents ##
 
 1. [Description](#description)
-2. [Requirements](#requirements)
-3. [Setup](#setup)
-4. [Usage](#usage)
-5. [Output](#output)
+2. [Input](#input)
+3. [Requirements](#requirements)
+4. [Setup](#setup)
+5. [Usage](#usage)
+6. [Output](#output)
 
 
 ## Description ##
-DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and identify highly influential genes for species in the clade. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies. A schematic preview of DrPhylo analysis:
+DrPhylo investigates major phylogenetic hypotheses of species relationships in inferred phylogenies. DrPhylo applies evolutionary sparse learning (ESL) to build a genetic model for a clade of interest and identify highly influential genes for species in the clade. DrPhylo efficiently identifies problematic species relationships and gene-species combinations (species) that are causal for fragile relationships in the inferred phylogenies. A schematic outline of DrPhylo analysis:
 			<div style="display: flex; justify-content: center;">
 			    <img src="https://github.com/ssharma2712/DrPhylo/assets/11808951/332cbd52-a1b3-4593-a0dd-62f6723376a0" width="600">
 			</div>
@@ -18,12 +19,13 @@ DrPhylo investigates major phylogenetic hypotheses of species relationships in i
 
 ## Requirements ##
 
-To run DrPhylo, you will need Python 3.8 or later installed, as well as the following Python packages
-
-- numpy
-- biopython
-- matplotlib
-- pandas
+To run DrPhylo, you will need Python 3.8 or later installed, as well as the following Python libraries:
+```R
+numpy
+biopython
+matplotlib
+pandas
+```
 
 You can install these libraries using pip:
 
@@ -56,9 +58,31 @@ Phylogenetic hypothesis     : A text file containing the species name with corre
 
 ## Usage: ##
 
-Once setup has been performed, the main pipeline can be applied to a set of alignment files and a hypothesis to determine the features/feature groups which have the most explanatory power in term of the provided hypothesis.
+Once the setup is done and all required Python package is installed, one can perform DrPhylo analysis using required inputs and other necessary optional arguments.
 
-	python ESL_pipeline.py tree_file.nwk alignment_list.txt [--parameter_name parameter_value] ... [--boolean_option] ...
+<br />
+
+```
+python3 ESL_pipeline.py tree_file.nwk alignment_list.txt  --optional argument
+```
+<br />
+
+#### Required arguments:
+
+<br />
+
+```
+
+tree_file.nwk         : A phylogenetic tree in newick format with a node ID to construct hypothesis for the clade of interest.
+                        The hypothesis can also be specified with a separate hypothesis file provided using the --response parameter.  
+
+alignment_list.txt    : A text file contains list of paths for all sequence alignmnets. For example
+                        angiosperm_alns/7276_C12.fasta
+                        angiosperm_alns/5111_C12.fasta
+                        angiosperm_alns/5507_C12.fasta
+
+```
+<br />	
 
 ESL can also be run in cross-validation or grid-search modes, using the --xval or (--grid_z + --grid_y) parameters, respectively. When in grid-search mode, each regression will be run with various feature- and group- sparsity parameters, and the results for each hypothesis will be aggregated across runs, with options to filter result sets with low accuracy/predictive power.
 
