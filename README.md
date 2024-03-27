@@ -120,28 +120,19 @@ alignment_list.txt    : A text file contains a list of paths for all sequence al
 
 ## Implementation using example dataset ##
 
-Run basic ESL on a tree with 2 internally labeled nodes, producing a result set for each of two hypotheses generated from the input tree:
+DrPhylo analysis for building clade models for two labeled clades, producing a result set for each of two hypotheses generated from the input tree:
+``
+python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output
+``
+DrPhylo analysis using a user-defined hypothesis, producing a single clade model for the given hypothesis:
+``
+python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output --response sample_files/test_pred.txt
+``
+DrPhylo analysis for building an ensemble clade model for a user-defined hypothesis using the grid search option. The site and gene sparsity score range from 0.05 to 0.1 and a step size of 0.05:
+``
+python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --grid_z 0.05,0.1,0.05 --grid_y 0.05,0.1,0.05 --output sample_grid2x2_output --response sample_files/test_pred.txt
+``
 
-	python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output
-
-Run basic ESL on a tree with 2 internally labeled nodes, but specify a single hypothesis/response file, ignoring the tree (a tree must still be specified) and producing a single result set for the provided response file:
-
-	python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output --response sample_files/test_pred.txt
-
-Run an ESL grid search with both lambda values in the range 0.05-0.1 and a step size of 0.05, specifying a single hypothesis/response file:
-
-	python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --grid_z 0.05,0.1,0.05 --grid_y 0.05,0.1,0.05 --output sample_grid2x2_output --response sample_files/test_pred.txt
-
-Run an ESL cross validation with 2 partitions, specifying a single hypothesis/response file:
-
-	python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_xval2_output --response sample_files/test_pred.txt --xval 2
-
-Run basic ESL on a tree with 2 internally labeled nodes, producing a result set for each of two hypotheses generated from the input tree, using overlapping feature groups:
-
-	python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns_overlapping.txt --output sample_tree_output_ol_logistic --method ol_logistic
-
-
-## Implementation using example dataset ##
 
 #### Basic Results Files
 
