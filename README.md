@@ -193,6 +193,6 @@ DrPhylo also generates outputs an ensemble clade model when grid serach option i
 Note: The `{inter_node_label}` will be relaplced by the text file name when a user-defined response file is used uisng `--response` option. 
 
 ## Citation ##
-If you use this software in your research, please cite our paper:
+If you use DrPhylo in your research, please cite our paper:
 
 Sharma, S. & Kumar, S. (2024). Discovering fragile clades and causal sequences in phylogenomics by evolutionary sparse learning. (In review)
