@@ -123,7 +123,7 @@ alignment_list.txt    : A text file contains a list of paths for all sequence al
 After finishing the setup, change the directory to `DrPhylo-master`. To create a text file containing the list of paths for all gene sequence alignments: 
 ```
 cd sample_files
-ls angiosperm_alns\*.fasta > angiosperm_100_sample_alns.txt
+ls angiosperm_alns/*.fasta > angiosperm_100_sample_alns.txt
 cd ..
 ```
 <br />
@@ -134,7 +134,7 @@ DrPhylo analysis for building clade models for two labeled clades, producing a r
 <br />
 
 ```
-python3 ESL_pipeline.py sample_files/ESL_test.nwk angiosperm_100_sample_alns.txt --output sample_tree_output
+python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output
 
 ```
 <br />
