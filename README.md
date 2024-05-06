@@ -52,7 +52,7 @@ MyESL.exe --DrPhylo alignment_list.txt  --tree phylogenetic_tree.nwk
 
 OR
 
-MyESL.exe --DrPhylo alignment_list.txt  --response phylogenetic_hypothesis.txt
+MyESL.exe --DrPhylo alignment_list.txt  --classes phylogenetic_hypothesis.txt
 ```
 <br />
 
@@ -69,12 +69,12 @@ alignment_list.txt                       : A text file contains a list of paths 
                                            angiosperm_alns/5507_C12.fasta
 
 --tree phylogenetic_tree.nwk             : A phylogenetic tree in newick format with a node ID to construct a hypothesis for the clade of interest.
-                                           The hypothesis can also be specified with a separate file using the --response parameter.
+                                           The hypothesis can also be specified with a separate file using the --classes parameter.
                                            It is highly recommended that the number of species in the clade be equal to or greater than those outside of the clade.
-                                           It is also recommended to use the smart sampling option (—-smart_sampling) when the number of species inside the clade is greater than the number outside the clade.
+                                           It is also recommended to use the smart sampling option (—-balancing) when the number of species inside the clade is greater than the number outside the clade.
 OR
 
---response phylogenetic_hypothesis.txt    : Requires a text file containing a user-defined hypothesis. It has two columns, which are tab-separated. The first column contains species names, and the second column contains the response value for the 
+--classes phylogenetic_hypothesis.txt   : Requires a text file containing a user-defined hypothesis. It has two columns, which are tab-separated. The first column contains species names, and the second column contains the response value for the 
                                             species (+1/-1). A member species in the clade receives +1 and -1 otherwise. This hypothesis is unconstrained by the tree structure. It is highly recommended that the number of species within the clade of 
                                             interest (+1) is equal to the number of species outside the clade. The hypothesis can also be specified using a separate text file provided using the --response parameter.  
 
