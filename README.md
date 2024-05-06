@@ -133,7 +133,7 @@ DrPhylo analysis using a user-defined hypothesis, producing a single clade model
 <br />
 
 ```
-MyESL.exe --DrPhylo sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output --response sample_files/test_pred.txt
+MyESL.exe --DrPhylo sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output --classes sample_files/test_pred.txt
 
 ```
 <br />
@@ -142,7 +142,7 @@ DrPhylo analysis for building an ensemble clade model for a user-defined hypothe
 <br />
 
 ```
-MyESL.exe --DrPhylo sample_files/angiosperm_100_sample_alns.txt --response sample_files/test_pred.txt --lambda1_range 0.05,0.1,0.05 --lambda2_range 0.05,0.1,0.05 --output sample_grid2x2_output 
+MyESL.exe --DrPhylo sample_files/angiosperm_100_sample_alns.txt --classes sample_files/test_pred.txt --lambda1_range 0.05,0.1,0.05 --lambda2_range 0.05,0.1,0.05 --output sample_grid2x2_output 
 
 ```
 <br />
@@ -150,7 +150,7 @@ MyESL.exe --DrPhylo sample_files/angiosperm_100_sample_alns.txt --response sampl
 
 ### Model grid from DrPhylo
 
-DrPhylo also generates outputs an ensemble clade model when grid serach option is used:
+DrPhylo also generates outputs an ensemble clade model when the grid search option is used:
 
 ```
 
