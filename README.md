@@ -24,52 +24,38 @@ A schematic outline of DrPhylo analysis. The figure is used from DrPhylo article
 			    <img src="https://github.com/ssharma2712/DrPhylo/assets/11808951/332cbd52-a1b3-4593-a0dd-62f6723376a0" width="600">
 			</div>
 
+## DrPhylo Analysis ## 
 
-## Installation ##
+DrPhylo is integrated into MyESL, which can be implemented using the ```--DrPhylo``` flag in MyESL. Therefore, installing MyESL will allow users to implement DrPhylo. MyESL can be installed in the Python environment using the source codes and the instructions below. A user can also use MyESL as a standalone executable software, which does not require installation.    
 
-To run DrPhylo, you will need Python 3.8 or later installed, as well as the following Python libraries:
-```R
-numpy
-biopython
-matplotlib
-pandas
-```
+## MyESL.exe DrPhylo analysis ##
 
-You can install these libraries using pip:
-
-`pip install biopython numpy pandas matplotlib`
-
-To perform DrPhylo analysis, get the ESL package using the following on the command line:
-
-	git clone -b grid_search https://github.com/kumarlabgit/ESL ESL
-	cd ESL
-	bash setup.sh
-
-
-## Input ##
-DrPhylo takes a phylogenetic tree in newick format and sequence alignments of genes or genomic loci in fasta format. The clade of interest in the newick tree needs to be marked by a node ID, as presented in the example. A user can also provide a text file for the hypothesis 
- 
-<br />
+To run DrPhylo integrated into MyESL, download MyESL using: 
 
 ```
-Sequence alignmnets         : A list of sequence alignments into fasta format.  
+git clone -b DrPhylo https://github.com/kumarlabgit/MyESL DrPhylo
+cd MyESL
 
-Phylogenetic tree           : A phylogenetic tree with clade ID for the clade of interest.  
-
-Phylogenetic hypothesis     : A text file containing the species name with corresponding response value (+1/-1). It is required for user-defined hypotheses.  
 ```
-<br />
+
+## Basic input for DrPhylo analysis using default options ##
+DrPhylo analysis in MyESL requires the list of paths for all groups (sequence alignments of genes or genetic loci in fasta format) as a text file and a phylogenetic hypothesis. The phylogenetic hypothesis tested by DrPhylo can be provided using a phylogenetic tree in newick format or a text file containing the hypothesis. 
 
 ## Implementation ##
 
-Once the setup is complete and all required Python packages are installed, one can perform DrPhylo analysis using the required inputs and other necessary optional arguments.
+After downloading, a user can perform DrPhylo analysis using the required inputs and other necessary optional arguments.
 
 <br />
 
 ```
-python3 ESL_pipeline.py tree_file.nwk alignment_list.txt  --optional arguments
+MyESL.exe --DrPhylo alignment_list.txt  --tree phylogenetic_tree.nwk
+
+OR
+
+MyESL.exe --DrPhylo alignment_list.txt  --response phylogenetic_hypothesis.txt
 ```
 <br />
+
 
 #### Required arguments:
 
@@ -77,18 +63,28 @@ python3 ESL_pipeline.py tree_file.nwk alignment_list.txt  --optional arguments
 
 ```
 
-tree_file.nwk         : A phylogenetic tree in newick format with a node ID to construct a hypothesis for the clade of interest.
-                        The hypothesis can also be specified with a separate file using the --response parameter.
-                        It is highly recommended that the number of species in the clade be equal to or greater than those outside of the clade.
-                        It is also recommended to use the smart sampling option (—-smart_sampling) when the number of species inside the clade is greater than the number outside the clade.  
+alignment_list.txt                       : A text file contains a list of paths for all sequence alignments. For example,
+                                           angiosperm_alns/7276_C12.fasta
+                                           angiosperm_alns/5111_C12.fasta
+                                           angiosperm_alns/5507_C12.fasta
 
-alignment_list.txt    : A text file contains a list of paths for all sequence alignments. For example,
-                        angiosperm_alns/7276_C12.fasta
-                        angiosperm_alns/5111_C12.fasta
-                        angiosperm_alns/5507_C12.fasta
+--tree phylogenetic_tree.nwk             : A phylogenetic tree in newick format with a node ID to construct a hypothesis for the clade of interest.
+                                           The hypothesis can also be specified with a separate file using the --response parameter.
+                                           It is highly recommended that the number of species in the clade be equal to or greater than those outside of the clade.
+                                           It is also recommended to use the smart sampling option (—-smart_sampling) when the number of species inside the clade is greater than the number outside the clade.
+OR
+
+--response phylogenetic_hypothesis.txt    : Requires a text file containing a user-defined hypothesis. It has two columns, which are tab-separated. The first column contains species names, and the second column contains the response value for the 
+                                            species (+1/-1). A member species in the clade receives +1 and -1 otherwise. This hypothesis is unconstrained by the tree structure. It is highly recommended that the number of species within the clade of 
+                                            interest (+1) is equal to the number of species outside the clade. The hypothesis can also be specified using a separate text file provided using the --response parameter.  
 
 ```
 <br />	
+
+
+DrPhylo builds multiple ESL models by performing a ```grid search``` over the discrete sparsity parameters (group and site) space. DrPhylo achieves computational efficiency by early terminating the grid-search process and selecting only multi-gene models. 
+
+DrPhylo outputs a model grid (```M-grid```) and a text file in a matrix format containing the model. A ```M-grid``` is a two-dimensional graphical presentation of the ESL model containing species names with classification probability (rows) and groups sorted by influence (columns).  
 
 #### Optional argumnets:
 
@@ -96,25 +92,19 @@ alignment_list.txt    : A text file contains a list of paths for all sequence al
 
 ```
 
---response             : Requires a text file containing a user-defined hypothesis. It has two columns, which are tab-separated. The first column contains species names, and the second column contains the response value for the 
-                         species (+1/-1). A member species in the clade receives +1 and -1 otherwise. This hypothesis is unconstrained by the tree structure. It is highly recommended that the number of species within the clade of 
-                         interest (+1) is equal to the number of species outside the clade. The hypothesis can also be specified using a separate text file provided using the --response parameter.  
+--lamda1_range               : This option allows users to set the range for the site sparsity parameter. The site sparsity grid is defined by a string of float numbers min, max, step_size which range from 0 to 1.
+                               For example, --lamda1_range 0.1, 0.9, 0.1. This option must be used with --lamda2_range.  
 
---lambda1 (or -z)      : The site sparsity parameter that ranges from 0 to 1. When not specified, the default is 0.1. It is required for building a single-clade model.
+--lamda2_range               : This option allows users to set the range for the group sparsity parameter. The group sparsity grid is defined by a string of float numbers min, max, step_size which range from 0 to 1.
+                               For example, --lamda2_range 0.1, 0.9, 0.1. This option must be used with --lamda1_range. 
 
---lambda2 (or -y)      : The gene sparsity parameter ranges from 0 to 1, and the default is 0.1 when not specified. It is required for building a single-clade model.
+--min_groups                 : This option allows users to set the minimum number of genes included in the multi-gene ESL models and helps early stopping in the grid search over the sparsity parameter space.
+                               It takes a value greater than zero (0) and builds models containing more or equal numbers of groups in the model.
 
---grid_z               : This option builds multiple clade models for a sequence of site sparsity parameters defined by the user. A user can specify the minimum (0-1), maximum (0-1), and step size for the sequence of site sparsity 
-                         parameters. This option must be used with --grid_y and does not require to specify --lambda1.  
-
---grid_y               : This option builds multiple clade models for a sequence of gene sparsity parameters defined by the user. A user can specify the minimum (0-1), maximum (0-1), and step size for the sequence of gene sparsity 
-                         parameters. This option must be used with --grid_z and does not require to specify --lambda2. 
-
---grid_gene_threshold  : It is defined for early stopping for the grid search over the sparsity parameter space. It takes a value greater than zero (0) and builds models with less than or equal to this number of genes.
-
---smart_sampling       : This option is recommended when the user-defined hypothesis is not provided using "--resposne" option. Smart sampling ensures a class balance between the number of species inside and outside the clade of 
-                         interest by phylogenetic-aware sampling of species outside of the clade.
---output               : The name of the output directory where all results from DrPhylo analysis will be stored. The program creates this directory automatically. 
+--balancing                  : DrPhylo also performs class balancing, a common practice in classification analysis of supervised machine learning. Class balancing helps to make a balance between the number of species inside and outside the focal clade of 
+                               interest. Class balancing in DrPhylo is performed by phylogenetic aware sampling <phylo> when the phylogenetic hypothesis is provided by the "--tree" option. DrPhylo also makes a balance between classes by using inverse weights using
+                               the option <weight>. 
+--output                     : The name of the output directory where all results from DrPhylo analysis will be stored. The program creates this directory automatically. 
 ```
 <br />	
 
@@ -134,7 +124,7 @@ DrPhylo analysis for building clade models for two labeled clades, producing a r
 <br />
 
 ```
-python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output
+MyESL.exe --DrPhylo sample_files/angiosperm_100_sample_alns.txt --tree sample_files/ESL_test.nwk --output sample_tree_output
 
 ```
 <br />
@@ -143,7 +133,7 @@ DrPhylo analysis using a user-defined hypothesis, producing a single clade model
 <br />
 
 ```
-python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output --response sample_files/test_pred.txt
+MyESL.exe --DrPhylo sample_files/angiosperm_100_sample_alns.txt --output sample_tree_output --response sample_files/test_pred.txt
 
 ```
 <br />
@@ -152,10 +142,30 @@ DrPhylo analysis for building an ensemble clade model for a user-defined hypothe
 <br />
 
 ```
-python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sample_alns.txt --grid_z 0.05,0.1,0.05 --grid_y 0.05,0.1,0.05 --output sample_grid2x2_output --response sample_files/test_pred.txt
+MyESL.exe --DrPhylo sample_files/angiosperm_100_sample_alns.txt --response sample_files/test_pred.txt --lambda1_range 0.05,0.1,0.05 --lambda2_range 0.05,0.1,0.05 --output sample_grid2x2_output 
 
 ```
 <br />
+
+
+### Model grid from DrPhylo
+
+DrPhylo also generates outputs an ensemble clade model when grid serach option is used:
+
+```
+
+{internal_node_label}_GSC_median.txt : Dataframe contaiang GSC, SCP and CP.
+
+{internal_node_label}_GSC_median.png : Grid representation of the ensamble clade model using *_GSC_median.txt. This visualization will also contain SCP for all species in the clade of interest.
+                                       The taxa with the lowest SCP will be at the top of the grid and the lowest SCP for the clade is defined as the CP for the clade of interest. 
+
+```
+Note: The `{inter_node_label}` will be relaplced by the text file name when a user-defined response file is used uisng `--response` option. 
+
+
+
+
+### Work in Progress
 
 
 ### Output from single model
@@ -171,19 +181,25 @@ python3 ESL_pipeline.py sample_files/ESL_test.nwk sample_files/angiosperm_100_sa
 
 ```
 
-### Ensemble clade model from grid serach
+## Installation of MyESL into Python for DrPhylo analysis ##
 
-DrPhylo also generates outputs an ensemble clade model when grid serach option is used:
-
+To run DrPhylo, you will need Python 3.8 or later installed, as well as the following Python libraries:
+```R
+numpy
+biopython
+matplotlib
+pandas
 ```
 
-{internal_node_label}_GSC_median.txt : Dataframe contaiang GSC, SCP and CP.
+You can install these libraries using pip:
 
-{internal_node_label}_GSC_median.png : Grid representation of the ensamble clade model using *_GSC_median.txt. This visualization will also contain SCP for all species in the clade of interest.
-                                       The taxa with the lowest SCP will be at the top of the grid and the lowest SCP for the clade is defined as the CP for the clade of interest. 
+`pip install biopython numpy pandas matplotlib`
 
-```
-Note: The `{inter_node_label}` will be relaplced by the text file name when a user-defined response file is used uisng `--response` option. 
+To perform DrPhylo analysis, get the ESL package using the following on the command line:
+
+	git clone -b grid_search https://github.com/kumarlabgit/ESL ESL
+	cd ESL
+	bash setup.sh
 
 ## Citation ##
 If you use DrPhylo in your research, please cite our articles:
