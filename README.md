@@ -28,7 +28,7 @@ A schematic outline of DrPhylo analysis. The figure is used from DrPhylo article
 
 DrPhylo is integrated into MyESL, which can be implemented using the ```--DrPhylo``` flag in MyESL. Therefore, installing MyESL will allow users to implement DrPhylo. MyESL can be installed in the Python environment using the source codes and the instructions below. A user can also use MyESL as a standalone executable software, which does not require installation.    
 
-## MyESL.exe DrPhylo analysis ##
+## MyESL.exe for DrPhylo analysis ##
 
 To run DrPhylo integrated into MyESL, download MyESL using: 
 
