@@ -159,8 +159,8 @@ DrPhylo also generates outputs an ensemble clade model when the grid search opti
 
 {internal_node_label}_GSC_median.txt : Dataframe contaiang GSC, SCP and CP.
 
-{internal_node_label}_GSC_median.png : Grid representation of the ensamble clade model using *_GSC_median.txt. This visualization will also contain SCP for all species in the clade of interest.
-                                       The taxa with the lowest SCP will be at the top of the grid and the lowest SCP for the clade is defined as the CP for the clade of interest. 
+{internal_node_label}_GSC_median.png : Grid representation of the ensemble clade model using *_GSC_median.txt. This visualization will also contain SCP for all species in the clade of interest.
+                                       The taxa with the lowest SCP will be at the top of the grid, and the lowest SCP for the clade is defined as the CP for the clade of interest. 
 
 ```
 Note: The `{inter_node_label}` will be replaced by the text file name when the `--classes` option is used for providing a user-defined phylogenetic hypothesis. 
@@ -194,4 +194,6 @@ To perform DrPhylo analysis, get the ESL package using the following on the comm
 If you use DrPhylo in your research, please cite our articles:
 
 1. Sharma, S. & Kumar, S. (2024). Discovering fragile clades and causal sequences in phylogenomics by evolutionary sparse learning. (In review)
-2. Kumar, S. and Sharma, S (2021). Evolutionary Sparse Learning for Phylogenomics, Molecular Biology and Evolution, Volume 38, Issue 11, November 2021, Pages 4674–4682. 
+2. Kumar, S. and Sharma, S (2021). Evolutionary Sparse Learning for Phylogenomics, Molecular Biology and Evolution, Volume 38, Issue 11, November 2021, Pages 4674–4682.
+3. Sanderford et al., (2024).  MyESL: A software for evolutionary sparse learning in molecular phylogenetics and genomics (In preparation).
+
