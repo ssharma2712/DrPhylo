@@ -190,7 +190,7 @@ To perform DrPhylo analysis, get the ESL package using the following on the comm
 
  #### To perform DrPhylo analysis of example dataset using `MyESL` pipeline similar to `MyESL.exe`, only replacing `MyESL.exe` with `MyESL.py`
 
-## Citation ##
+## References ##
 If you use DrPhylo in your research, please cite our articles:
 
 1. Sharma, S. & Kumar, S. (2024). Discovering fragile clades and causal sequences in phylogenomics by evolutionary sparse learning. (In review)
