@@ -93,6 +93,7 @@ DrPhylo outputs a model grid (```M-grid```) and a text file in a matrix format c
 
 ```
 --clade_list <string1, string2,...>  : Users can test multiple phylogenetic hypotheses when the input phylogenetic tree contains multiple clade IDs. This option must be used with "--tree" option.
+
 --gen_clade_id <int, int>            : Users can generate multiple hypotheses when the input phylogeny contains no clade ID. The size of the clade is determined by the input integers defining the upper and lower limits
                                        of clade size, respectively.   
 --lamda1_grid <min, max, step>       : This option allows users to set the range for the site sparsity parameter. The site sparsity grid is defined by a string of float numbers min, max, step_size which range from 0 to 1.
