@@ -34,7 +34,7 @@ To run DrPhylo integrated into MyESL, download MyESL using:
 
 ```
 git clone -b DrPhylo https://github.com/kumarlabgit/MyESL DrPhylo
-cd MyESL
+cd DrPhylo
 
 ```
 
@@ -43,7 +43,7 @@ DrPhylo analysis in MyESL requires the list of paths for all groups (sequence al
 
 ## Implementation ##
 
-After downloading, a user can perform DrPhylo analysis using the required inputs and other necessary optional arguments.
+After downloading, a user can perform DrPhylo analysis using the required inputs and optional arguments.
 
 <br />
 
@@ -71,7 +71,7 @@ alignment_list.txt                       : A text file contains a list of paths 
 --tree <phylogenetic_tree.nwk>           : A phylogenetic tree in newick format with a node ID to construct a hypothesis for the clade of interest.
                                            The hypothesis can also be specified with a separate file using the --classes parameter.
                                            It is highly recommended that the number of species in the clade be equal to or greater than those outside of the clade.
-                                           It is also recommended to use the smart sampling option (—-balancing) when the number of species inside the clade is greater than the number outside the clade.
+                                           It is also recommended to use the smart sampling option (—-class_bal) when the number of species inside the clade is greater than the number outside the clade.
 OR
 
 --classes <phylogenetic_hypothesis.txt> : Requires a text file containing a user-defined hypothesis. It has two columns, which are tab-separated. The first column contains species names, and the second column contains the response 
