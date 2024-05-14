@@ -83,9 +83,9 @@ OR
 <br />	
 
 
-DrPhylo builds multiple ESL models by performing a ```grid search``` over the discrete sparsity parameters (group and site) space. DrPhylo achieves computational efficiency by early terminating the grid-search process and selecting only multi-gene models. 
+DrPhylo builds multiple ESL models by performing a ```grid search``` over the discrete sparsity parameters (group and site) space. DrPhylo achieves computational efficiency by terminating the grid-search process early and selecting only multi-gene models. 
 
-DrPhylo outputs a model grid (```M-grid```) and a text file in a matrix format containing the model. A ```M-grid``` is a two-dimensional graphical presentation of the ESL model containing species names with classification probability (rows) and groups sorted by influence (columns).  
+DrPhylo outputs a model grid (```M-Grid```) and a text file in a matrix format containing the model. A ```M-Grid``` is a two-dimensional graphical presentation of the ESL model containing species names with classification probability (rows) and groups sorted by influence (columns).  
 
 #### Optional argumnets:
 
@@ -158,13 +158,13 @@ DrPhylo also generates outputs an ensemble clade model when the grid search opti
 
 ```
 
-{internal_node_label}_GSC_median.txt : Dataframe contaiang GSC, SCP and CP.
+M-Grid_{clade_ID}.txt : Dataframe containing GSC, SCP, and CP.
 
-{internal_node_label}_GSC_median.png : Grid representation of the ensemble clade model using *_GSC_median.txt. This visualization will also contain SCP for all species in the clade of interest.
+M-Grid_{clade_ID}.png : Grid representation of the ensemble clade model using *_GSC_median.txt. This visualization will also contain SCP for all species in the clade of interest.
                                        The taxa with the lowest SCP will be at the top of the grid, and the lowest SCP for the clade is defined as the CP for the clade of interest. 
 
 ```
-Note: The `{inter_node_label}` will be replaced by the text file name when the `--classes` option is used for providing a user-defined phylogenetic hypothesis. 
+Note: The `{clade}` will be replaced by the text file name when the `--classes` option is used for providing a user-defined phylogenetic hypothesis. 
 
 
 
@@ -189,7 +189,7 @@ To perform DrPhylo analysis, get the ESL package using the following on the comm
 	cd ESL
 	bash setup.sh
 
- #### To perform DrPhylo analysis of example dataset using `MyESL` pipeline similar to `MyESL.exe`, only replacing `MyESL.exe` with `MyESL.py`
+ #### To perform DrPhylo analysis of the example dataset using `MyESL` pipeline similar to `MyESL.exe`, replace `MyESL.exe` with `MyESL.py`
 
 ## References ##
 If you use DrPhylo in your research, please cite our articles:
